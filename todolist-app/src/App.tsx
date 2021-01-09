@@ -1,8 +1,13 @@
 import React from "react";
+import Dashboard from "./components/templates/Dashboard";
 import "./App.css";
 
 function App() {
-    return <div className="todo-app">Hello from application.</div>;
+    return (
+        <div className="app-container">
+            <Dashboard />
+        </div>
+    );
 }
 
 export default App;

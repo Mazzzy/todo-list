@@ -1,9 +1,9 @@
-import React, { FC, MouseEvent } from "react";
+import React, { FC, ReactNode, MouseEvent } from "react";
 
 interface NavItemProps {
     href?: string;
     className?: string;
-    children?: any;
+    children?: ReactNode;
     clickHandler?: (e: MouseEvent<HTMLAnchorElement>) => void;
 }
 

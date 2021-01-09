@@ -1,0 +1,45 @@
+.card {
+    background-color: #fff;
+    box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.02);
+    color: #4a4a4a;
+    max-width: 100%;
+    position: relative;
+    margin-bottom: 2.2em;
+}
+
+.card .card-header {
+    background-color: transparent;
+    align-items: stretch;
+    box-shadow: 0 0.125em 0.25em rgba(10, 10, 10, 0.1);
+    display: flex;
+    padding: 1rem;
+}
+
+.card .card-header .card-header-title {
+    align-items: center;
+    color: #363636;
+    display: flex;
+    flex-grow: 1;
+    font-weight: 700;
+    margin: 0;
+    justify-content: space-between;
+}
+
+.card .card-content {
+    background-color: transparent;
+    padding: 1.5rem;
+}
+
+.card .card-content .field {
+    margin-bottom: 0.75rem;
+}
+
+.card .card-content .filter-label {
+    text-transform: capitalize;
+}
+.card .card-content .active-check-container {
+    margin: 1em 0;
+    border-bottom: 2px solid #edf2f7;
+    padding: 1em 0;
+    text-align: left;
+}

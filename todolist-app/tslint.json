@@ -1,0 +1,23 @@
+{
+    "defaultSeverity": "error",
+    "extends": ["tslint:latest", "tslint-react", "tslint-config-prettier"],
+    "jsRules": {},
+    "rules": {
+        "no-implicit-dependencies": false,
+        "object-literal-sort-keys": false,
+        "jsx-boolean-value": ["always", { "never": ["exact"] }],
+        "jsx-no-lambda": ["always", { "never": ["onClick"] }],
+        "prettier": [true, "./.prettierrc"],
+        "no-shadowed-variable": false,
+        "interface-name": false,
+        "member-access": false,
+        "ordered-imports": false,
+        "quotemark": false,
+        "no-console": false,
+        "no-submodule-imports": false
+    },
+    "rulesDirectory": ["tslint-plugin-prettier"],
+    "linterOptions": {
+        "exclude": ["node_modules/**/*.ts"]
+    }
+}

@@ -1,1 +1,1 @@
-export * from "./todoTypes";
+export * from "./todosTypes";

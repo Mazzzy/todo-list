@@ -1,0 +1,20 @@
+.dashboard-contents {
+    display: flex;
+    flex-direction: row;
+    margin-top: 1.5rem;
+    padding: 0 1.5rem;
+}
+
+.dashboard-contents .side-bar {
+    font-size: 1rem;
+    display: block;
+    padding: 0.75rem;
+    flex: none;
+    flex: 1 1 0;
+}
+.dashboard-contents .main-contents {
+    display: block;
+    padding: 0.75rem;
+    flex: none;
+    flex: 2 2 20em;
+}

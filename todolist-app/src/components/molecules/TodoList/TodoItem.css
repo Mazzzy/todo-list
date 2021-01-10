@@ -1,0 +1,12 @@
+.box {
+    font-size: 0.9rem;
+}
+
+.box-item {
+    display: flex;
+    justify-content: space-between;
+}
+.box-item-head {
+    font-size: 1rem;
+    font-weight: 700;
+}

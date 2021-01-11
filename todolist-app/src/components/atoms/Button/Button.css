@@ -10,8 +10,29 @@
     font-size: 0.85rem;
     height: 1.25rem;
     line-height: 1.5;
+    cursor: pointer;
 }
 .button:hover {
     background-color: #4797bf;
     color: white;
+}
+
+.button.success {
+    border: 1px solid #48c774;
+    color: #48c774;
+}
+
+.button.success:hover {
+    background-color: #48c774;
+    color: #ffffff;
+}
+
+.button.danger {
+    border: 1px solid #f14668;
+    color: #f14668;
+}
+
+.button.danger:hover {
+    background-color: #f14668;
+    color: #ffffff;
 }

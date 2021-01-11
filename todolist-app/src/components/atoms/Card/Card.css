@@ -37,7 +37,7 @@
 .card .card-content .filter-label {
     text-transform: capitalize;
 }
-.card .card-content .active-check-container {
+.card .card-content .completed-check-container {
     margin: 1em 0;
     border-bottom: 2px solid #edf2f7;
     padding: 1em 0;

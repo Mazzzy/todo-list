@@ -21,16 +21,16 @@ const TodoList: FC<TodoListProps> = ({ todosData }) => {
         pageNumbers.push(i);
     }
 
-    const renderPageNumbers = pageNumbers.map((number) => {
+    const renderPageNumbers = pageNumbers.map((pgNumber) => {
         return (
             <li
-                key={number}
+                key={pgNumber}
                 onClick={(e: MouseEvent<HTMLElement>) => {
-                    setCurrentPage(number);
+                    setCurrentPage(pgNumber);
                 }}
-                className={currentPage === number ? "active-page" : ""}
+                className={currentPage === pgNumber ? "active-page" : ""}
             >
-                {number}
+                {pgNumber}
             </li>
         );
     });

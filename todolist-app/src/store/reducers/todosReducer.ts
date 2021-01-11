@@ -32,7 +32,7 @@ export const todosReducer = (state = initialTodosState, action: TodosAction): To
             console.log("TT ", todosFromLS);
             return {
                 // ...state,
-                //data: action.payload,
+                // data: action.payload,
                 data: !Object.keys(todosFromLS).length ? action.payload : Object.values(todosFromLS),
                 loading: false,
                 error: "",
@@ -108,7 +108,7 @@ export const todosReducer = (state = initialTodosState, action: TodosAction): To
             const selectedTodo = getCollectionFromLS("todos")[action.payload];
             return {
                 ...state,
-                selectedTodo: selectedTodo,
+                selectedTodo,
             };
         default:
             return state;

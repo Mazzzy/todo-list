@@ -9,7 +9,7 @@ interface FilterContentProps {
     filterCompState: any;
     setFilterCompState: any;
     filterTextChange: (txtVal: string) => void;
-    filterOnlyActiveOnes: (checkVal: boolean) => void;
+    filterOnlyCompletedOnes: (checkVal: boolean) => void;
     clickClearHandler?: (e: MouseEvent<HTMLAnchorElement>) => void;
 }
 
@@ -17,10 +17,10 @@ const FilterContent: FC<FilterContentProps> = ({
     filterCompState,
     setFilterCompState,
     filterTextChange,
-    filterOnlyActiveOnes,
+    filterOnlyCompletedOnes,
     clickClearHandler,
 }) => {
-    const { todoName, activeTodo } = filterCompState;
+    const { todoName, completedTodo } = filterCompState;
 
     const nameInputChangeHandler = (e: FormEvent<HTMLInputElement>) => {
         const { name, value } = e.currentTarget;
@@ -29,11 +29,11 @@ const FilterContent: FC<FilterContentProps> = ({
         filterTextChange(value);
     };
 
-    const onlyActiveChangeHandler = (e: FormEvent<HTMLInputElement>) => {
+    const onlyCompletedChangeHandler = (e: FormEvent<HTMLInputElement>) => {
         const { name, checked } = e.currentTarget;
         setFilterCompState((prevState: object) => ({ ...prevState, [name]: checked }));
         // trigger to update store
-        filterOnlyActiveOnes(checked);
+        filterOnlyCompletedOnes(checked);
     };
 
     return (
@@ -47,10 +47,10 @@ const FilterContent: FC<FilterContentProps> = ({
                         onChange={nameInputChangeHandler}
                     />
                 </div>
-                <div className="field active-check-container">
+                <div className="field completed-check-container">
                     <label className="checkbox">
-                        <Checkbox name="activeTodo" checked={activeTodo} onChange={onlyActiveChangeHandler} /> Only{" "}
-                        <Badge title="Active" />
+                        <Checkbox name="completedTodo" checked={completedTodo} onChange={onlyCompletedChangeHandler} />{" "}
+                        Only <Badge title="Completed" />
                     </label>
                 </div>
                 <Button title="Clear All" onClick={clickClearHandler} />

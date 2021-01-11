@@ -56,7 +56,7 @@
     line-height: 1;
 }
 
-.danger {
+.cross-btn {
     user-select: none;
     background-color: rgba(10, 10, 10, 0.1);
     border: none;
@@ -67,13 +67,13 @@
     position: relative;
 }
 
-.danger:before {
+.cross-btn:before {
     -webkit-transform: rotate(45deg);
     transform: rotate(45deg);
 }
 
-.danger:after,
-.danger:before {
+.cross-btn:after,
+.cross-btn:before {
     content: " ";
     background-color: #fff;
     display: block;
@@ -86,7 +86,7 @@
     width: 50%;
 }
 
-.danger:after {
+.cross-btn:after {
     -webkit-transform: rotate(-45deg);
     transform: rotate(-45deg);
 }

@@ -5,16 +5,16 @@ import FilterContent from "./FilterContent";
 const Filters: FC = () => {
     const filterCompInitialState = {
         todoName: "",
-        activeTodo: false,
+        completedTodo: false,
     };
 
     const [filterCompState, setFilterCompState] = useState(filterCompInitialState);
 
     const filterTextChange = (txtVal: string) => {
-        // setFilterCompState({ ...activeTodo, {todoName: txtVal} });
+        // setFilterCompState({ ...completedTodo, {todoName: txtVal} });
     };
 
-    const filterOnlyActiveOnes = (checkVal: boolean) => {
+    const filterOnlyCompletedOnes = (checkVal: boolean) => {
         // setFilterCompState(checkVal);
     };
 
@@ -29,7 +29,7 @@ const Filters: FC = () => {
                 filterCompState={filterCompState}
                 setFilterCompState={setFilterCompState}
                 filterTextChange={filterTextChange}
-                filterOnlyActiveOnes={filterOnlyActiveOnes}
+                filterOnlyCompletedOnes={filterOnlyCompletedOnes}
                 clickClearHandler={clickClearHandler}
             />
         </Card>

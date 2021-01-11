@@ -1,25 +1,44 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState, FormEvent } from "react";
+import { useDispatch } from "react-redux";
+
+import { Todo } from "../../../store/types";
+import { addTodo } from "../../../store/actions";
+
 import Card from "../../atoms/Card/Card";
 import CreateContent from "./CreateContent";
 
 const Create: FC = () => {
+    const dispatch = useDispatch();
     const createCompInitialState = {
-        itemTitle: "",
+        todoName: "",
     };
 
     const [createCompState, setCreateCompState] = useState(createCompInitialState);
 
-    const createTextChange = (txtVal: string) => {
-        setCreateCompState({ itemTitle: txtVal });
+    const submitHandler = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const { todoName } = createCompState;
+        if (todoName.trim() === "") {
+            return alert("Todo name is required!");
+        }
+
+        const newTodo: Todo = {
+            id: new Date().getTime(),
+            title: todoName,
+            creationDate: `${new Date().getTime()}`,
+            completed: false,
+        };
+
+        dispatch(addTodo(newTodo));
+        setCreateCompState(createCompInitialState);
     };
 
     return (
         <Card title="Create Todo Items">
-            <p>Hello world</p>
             <CreateContent
                 createCompState={createCompState}
                 setCreateCompState={setCreateCompState}
-                createTextChange={createTextChange}
+                submitHandler={submitHandler}
             />
         </Card>
     );

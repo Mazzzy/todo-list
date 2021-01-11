@@ -1,21 +1,20 @@
-import React, { FC, FormEvent } from "react";
+import React, { FC, FormEvent, useRef } from "react";
+import Button from "../../atoms/Button/Button";
 
 import TextField from "../../atoms/TextField/TextField";
 
 interface CreateContentProps {
     createCompState: any;
     setCreateCompState: any;
-    createTextChange: (txtVal: string) => void;
+    submitHandler: (e: FormEvent<HTMLFormElement>) => void;
 }
 
-const CreateContent: FC<CreateContentProps> = ({ createCompState, setCreateCompState, createTextChange }) => {
+const CreateContent: FC<CreateContentProps> = ({ createCompState, setCreateCompState, submitHandler }) => {
     const { todoName } = createCompState;
 
     const nameInputChangeHandler = (e: FormEvent<HTMLInputElement>) => {
         const { name, value } = e.currentTarget;
         setCreateCompState((prevState: object) => ({ ...prevState, [name]: value }));
-        // trigger to update store
-        createTextChange(value);
     };
 
     return (
@@ -28,6 +27,9 @@ const CreateContent: FC<CreateContentProps> = ({ createCompState, setCreateCompS
                         value={todoName}
                         onChange={nameInputChangeHandler}
                     />
+                </div>
+                <div className="field">
+                    <Button title={"Save"} onClick={submitHandler} />
                 </div>
             </form>
         </div>

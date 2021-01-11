@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, FormEvent, MouseEvent } from "react";
 import "./Modal.css";
 
 interface ModalProps {
@@ -6,26 +6,37 @@ interface ModalProps {
     children?: any;
     okClick?: any;
     cancelClick?: any;
+    okBtnCaption?: string;
+    cancelBtnCaption?: string;
+    okBtnClass?: string;
 }
 
-const Modal: FC<ModalProps> = ({ title, children, okClick, cancelClick }) => {
+const Modal: FC<ModalProps> = ({
+    title,
+    children,
+    okClick,
+    cancelClick,
+    okBtnCaption,
+    cancelBtnCaption,
+    okBtnClass,
+}) => {
     return (
         <div className="modal">
             <div className="modal-background" onClick={cancelClick} />
             <div className="modal-content">
                 <header className="modal-card-head">
                     <p className="modal-card-title">{title}</p>
-                    <button type="button" className="danger" onClick={cancelClick} />
+                    <button type="button" className="cross-btn" onClick={cancelClick} />
                 </header>
                 <section className="modal-card-body">
                     <div className="content">{children}</div>
                 </section>
                 <footer className="modal-card-foot">
-                    <a className="button" onClick={okClick}>
-                        Yes
+                    <a className={`button ${okBtnClass}`} onClick={okClick}>
+                        {okBtnCaption || "Ok"}
                     </a>
                     <a className="button" onClick={cancelClick}>
-                        Cancel
+                        {cancelBtnCaption || "Cancel"}
                     </a>
                 </footer>
             </div>

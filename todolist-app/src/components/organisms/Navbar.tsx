@@ -1,4 +1,7 @@
 import React, { FC, MouseEvent, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../../store/store";
+import { setTabActive } from "../../store/actions";
 
 import NavBrand from "../molecules/Nav/NavBrand";
 import NavMenu from "../molecules/Nav/NavMenu";
@@ -6,17 +9,18 @@ import NavMenu from "../molecules/Nav/NavMenu";
 import "./Navbar.css";
 
 const Navbar: FC = () => {
-    const [activeName, setActiveName] = useState("all");
+    const dispatch = useDispatch();
+    const activeTab = useSelector((state: RootState) => state.tabs?.activeName);
+
     const setActiveTabClick = (e: MouseEvent<HTMLAnchorElement>, name: string) => {
-        console.log("Active menu name ", name);
-        setActiveName(name);
+        dispatch(setTabActive(name));
     };
 
     return (
         <header>
             <nav className="navbar" role="navigation" aria-label="main navigation">
                 <NavBrand />
-                <NavMenu activeTab={activeName} setActiveTabClick={setActiveTabClick} />
+                <NavMenu activeTab={activeTab} setActiveTabClick={setActiveTabClick} />
             </nav>
         </header>
     );

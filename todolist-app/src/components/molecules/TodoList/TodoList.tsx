@@ -1,5 +1,10 @@
 import React, { FC, useState, MouseEvent } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store/store";
+
 import { Todo } from "../../../store/types";
+import { getFilteredTodos } from "../../../utils/utils";
+
 import TodoItem from "./TodoItem";
 interface TodoListProps {
     todosData: any;
@@ -7,16 +12,21 @@ interface TodoListProps {
 
 const TodoList: FC<TodoListProps> = ({ todosData }) => {
     const [currentPage, setCurrentPage] = useState(1);
+
+    const filtersData = useSelector((state: RootState) => state.filters);
+    const activeTab = useSelector((state: RootState) => state.tabs?.activeName);
+
+    const filteredTodos = getFilteredTodos(todosData, filtersData, activeTab);
     const todosPerPage = 10;
 
     // for displaying current todos
     const indexOfLastTodo = currentPage * todosPerPage;
     const indexOfFirstTodo = indexOfLastTodo - todosPerPage;
-    const currentTodos = todosData.slice(indexOfFirstTodo, indexOfLastTodo);
+    const currentTodos = filteredTodos.slice(indexOfFirstTodo, indexOfLastTodo);
 
     // for displaying page numbers
     const pageNumbers = [];
-    for (let i = 1; i <= Math.ceil(todosData.length / todosPerPage); i++) {
+    for (let i = 1; i <= Math.ceil(filteredTodos.length / todosPerPage); i++) {
         pageNumbers.push(i);
     }
 

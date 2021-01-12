@@ -1,6 +1,5 @@
 import React, { FC, useState, MouseEvent } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../store/store";
+import { useDispatch } from "react-redux";
 import { filterText, filterCompleted, filterClear } from "../../../store/actions";
 
 import Card from "../../atoms/Card/Card";

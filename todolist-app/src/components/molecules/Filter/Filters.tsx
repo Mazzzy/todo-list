@@ -1,8 +1,14 @@
 import React, { FC, useState, MouseEvent } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../../store/store";
+import { filterText, filterCompleted, filterClear } from "../../../store/actions";
+
 import Card from "../../atoms/Card/Card";
 import FilterContent from "./FilterContent";
 
 const Filters: FC = () => {
+    const dispatch = useDispatch();
+
     const filterCompInitialState = {
         todoName: "",
         completedTodo: false,
@@ -11,16 +17,18 @@ const Filters: FC = () => {
     const [filterCompState, setFilterCompState] = useState(filterCompInitialState);
 
     const filterTextChange = (txtVal: string) => {
-        // setFilterCompState({ ...completedTodo, {todoName: txtVal} });
+        dispatch(filterText(txtVal));
     };
 
     const filterOnlyCompletedOnes = (checkVal: boolean) => {
-        // setFilterCompState(checkVal);
+        dispatch(filterCompleted(checkVal));
     };
 
     const clickClearHandler = (e: MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();
         setFilterCompState({ ...filterCompInitialState });
+        // trigger to update store
+        dispatch(filterClear());
     };
 
     return (

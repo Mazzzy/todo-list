@@ -5,6 +5,7 @@ import { getTodos, setLoading } from "../../store/actions";
 
 import EditTodoModal from "../molecules/TodoList/EditTodoModal";
 import DeleteTodoModal from "../molecules/TodoList/DeleteTodoModal";
+import ConfirmTodoMyListModal from "../molecules/TodoList/ConfirmTodoMyListModal";
 
 import TodoList from "../molecules/TodoList/TodoList";
 import Heading from "../atoms/Heading/Heading";
@@ -17,6 +18,7 @@ const MainContent: FC = () => {
     const error = useSelector((state: RootState) => state.todos?.error);
     const todoToEdit = useSelector((state: RootState) => state.todos?.todoToEdit);
     const todoIdToDelete = useSelector((state: RootState) => state.todos?.todoIdToDelete);
+    const todoToConfirm = useSelector((state: RootState) => state.todos?.todoToConfirm);
 
     useEffect(() => {
         dispatch(setLoading());
@@ -30,6 +32,7 @@ const MainContent: FC = () => {
             {error && <Heading title={error} />}
             {todoToEdit && <EditTodoModal todo={todoToEdit} />}
             {todoIdToDelete && <DeleteTodoModal todoId={todoIdToDelete} />}
+            {todoToConfirm && <ConfirmTodoMyListModal todoId={todoToConfirm} />}
         </div>
     );
 };

@@ -1,6 +1,7 @@
-import React, { FC, FormEvent } from "react";
-import { useDispatch } from "react-redux";
-import { setTodoToEdit, setTodoIdToDelete } from "../../../store/actions";
+import React, { FC, MouseEvent } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../../store/store";
+import { setTodoToEdit, setTodoIdToDelete, setTodoToConfirm } from "../../../store/actions";
 
 import Card from "../../atoms/Card/Card";
 import Button from "../../atoms/Button/Button";
@@ -14,11 +15,24 @@ interface TodoItemProps {
 
 const TodoItem: FC<TodoItemProps> = ({ item }) => {
     const dispatch = useDispatch();
-    const setListToEditHandler = (id: string) => {
+    const activeTab = useSelector((state: RootState) => state.tabs?.activeName);
+
+    let addToListBtnTitle = "Add to my list";
+    let addToBtnClassName = "";
+    if (activeTab !== "all") {
+        addToListBtnTitle = "Remove from my list";
+        addToBtnClassName = "danger";
+    }
+
+    const setTodoToConfirmHandler = (id: string) => {
+        dispatch(setTodoToConfirm(id));
+    };
+
+    const setTodoToEditHandler = (id: string) => {
         dispatch(setTodoToEdit(id));
     };
 
-    const setListIdToDeleteHandler = (id: string) => {
+    const setTodoIdToDeleteHandler = (id: string) => {
         dispatch(setTodoIdToDelete(id));
     };
 
@@ -31,24 +45,24 @@ const TodoItem: FC<TodoItemProps> = ({ item }) => {
                     </p>
                     <div>
                         <Button
-                            className="action-btn"
-                            title={"Select it"}
-                            onClick={(e: FormEvent<HTMLAnchorElement>) => {
-                                console.log("clicked to select");
+                            className={`action-btn ${addToBtnClassName}`}
+                            title={addToListBtnTitle}
+                            onClick={(e: MouseEvent<HTMLAnchorElement>) => {
+                                setTodoToConfirmHandler(item?.id);
                             }}
                         />
                         <Button
-                            className="action-btn"
+                            className="action-btn success"
                             title={"Edit"}
-                            onClick={(e: FormEvent<HTMLAnchorElement>) => {
-                                setListToEditHandler(item?.id);
+                            onClick={(e: MouseEvent<HTMLAnchorElement>) => {
+                                setTodoToEditHandler(item?.id);
                             }}
                         />
                         <Button
-                            className="action-btn"
+                            className="action-btn danger"
                             title={"Delete"}
-                            onClick={(e: FormEvent<HTMLAnchorElement>) => {
-                                setListIdToDeleteHandler(item?.id);
+                            onClick={(e: MouseEvent<HTMLAnchorElement>) => {
+                                setTodoIdToDeleteHandler(item?.id);
                             }}
                         />
                     </div>

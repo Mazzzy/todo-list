@@ -1,7 +1,6 @@
 import React, { FC, useState, MouseEvent } from "react";
 import { Todo } from "../../../store/types";
 import TodoItem from "./TodoItem";
-
 interface TodoListProps {
     todosData: any;
 }
@@ -21,6 +20,7 @@ const TodoList: FC<TodoListProps> = ({ todosData }) => {
         pageNumbers.push(i);
     }
 
+    // render pagination
     const renderPageNumbers = pageNumbers.map((pgNumber) => {
         return (
             <li
@@ -35,6 +35,7 @@ const TodoList: FC<TodoListProps> = ({ todosData }) => {
         );
     });
 
+    // render todo list
     const todosCollection = currentTodos.map((todoItem: Todo) => [<TodoItem key={todoItem?.id} item={todoItem} />]);
 
     return (

@@ -8,8 +8,9 @@ export const DELETE_TODO = "DELETE_TODO";
 export const UPDATE_TODO = "UPDATE_TODO";
 export const SET_TODOID_TO_DELETE = "SET_TODOID_TO_DELETE";
 export const SET_TODO_TO_EDIT = "SET_TODO_TO_EDIT";
-export const SET_SELECTED_TODO = "SET_SELECTED_TODO";
-
+export const SET_TODO_TO_CONFIRM = "SET_TODO_TO_CONFIRM";
+export const SET_SELECTED_TODOS = "SET_SELECTED_TODOS";
+export const REMOVE_SELECTED_TODOS = "REMOVE_SELECTED_TODOS";
 export interface Todo {
     id: number;
     title: string;
@@ -28,7 +29,8 @@ export interface TodosState {
     todoIdToDelete: string;
     todoToEdit: Todo | null;
     todoById: Todo | null;
-    selectedTodo: Todo | null;
+    todoToConfirm: string;
+    selectedTodos: Todo | object | null;
 }
 
 // error handling during API call
@@ -85,11 +87,21 @@ interface UpdateTodoAction {
     };
 }
 
-interface SetSelectedTodoAction {
-    type: typeof SET_SELECTED_TODO;
+interface SetTodoToConfirmAction {
+    type: typeof SET_TODO_TO_CONFIRM;
+    payload: string;
+}
+interface SetSelectedTodosAction {
+    type: typeof SET_SELECTED_TODOS;
     payload: string;
 }
 
+interface RemoveSelectedTodosAction {
+    type: typeof REMOVE_SELECTED_TODOS;
+    payload: string;
+}
+
+// type alias
 export type TodosAction =
     | GetTodosAction
     | SetLoadingAction
@@ -100,4 +112,6 @@ export type TodosAction =
     | SetTodoToEditAction
     | DeleteTodoAction
     | UpdateTodoAction
-    | SetSelectedTodoAction;
+    | SetTodoToConfirmAction
+    | SetSelectedTodosAction
+    | RemoveSelectedTodosAction;

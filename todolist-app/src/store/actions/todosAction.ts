@@ -11,7 +11,9 @@ import {
     GET_TODO_BY_ID,
     SET_TODOID_TO_DELETE,
     SET_TODO_TO_EDIT,
-    SET_SELECTED_TODO,
+    SET_TODO_TO_CONFIRM,
+    SET_SELECTED_TODOS,
+    REMOVE_SELECTED_TODOS,
     DELETE_TODO,
     UPDATE_TODO,
 } from "../types";
@@ -83,9 +85,23 @@ export const setTodoToEdit = (id: string): TodosAction => {
     };
 };
 
-export const setSelectedTodo = (id: string): TodosAction => {
+export const setTodoToConfirm = (id: string): TodosAction => {
     return {
-        type: SET_SELECTED_TODO,
+        type: SET_TODO_TO_CONFIRM,
+        payload: id,
+    };
+};
+
+export const setTodoToSelected = (id: string): TodosAction => {
+    return {
+        type: SET_SELECTED_TODOS,
+        payload: id,
+    };
+};
+
+export const removeTodoFromSelected = (id: string): TodosAction => {
+    return {
+        type: REMOVE_SELECTED_TODOS,
         payload: id,
     };
 };

@@ -10,7 +10,9 @@ import {
     SET_TODO_TO_EDIT,
     DELETE_TODO,
     UPDATE_TODO,
-    SET_SELECTED_TODO,
+    SET_TODO_TO_CONFIRM,
+    SET_SELECTED_TODOS,
+    REMOVE_SELECTED_TODOS,
 } from "../types";
 
 import { getCollectionFromLS, saveCollectionToLS } from "../../utils/utils";
@@ -22,11 +24,13 @@ const initialTodosState: TodosState = {
     todoIdToDelete: "",
     todoToEdit: null,
     todoById: null,
-    selectedTodo: null,
+    todoToConfirm: "",
+    selectedTodos: null,
 };
 
 export const todosReducer = (state = initialTodosState, action: TodosAction): TodosState => {
     const todosFromLS = getCollectionFromLS("todos");
+    const selectedTodosFromLS = getCollectionFromLS("selected-todos");
     switch (action.type) {
         case GET_TODOS:
             console.log("TT ", todosFromLS);
@@ -39,7 +43,8 @@ export const todosReducer = (state = initialTodosState, action: TodosAction): To
                 todoIdToDelete: "",
                 todoToEdit: null,
                 todoById: null,
-                selectedTodo: null,
+                todoToConfirm: "",
+                selectedTodos: !Object.keys(selectedTodosFromLS).length ? null : Object.values(selectedTodosFromLS),
             };
         case SET_LOADING:
             return {
@@ -86,12 +91,15 @@ export const todosReducer = (state = initialTodosState, action: TodosAction): To
             const todoId = clonedTodosFromLS2[action.payload].id;
             delete clonedTodosFromLS2[action.payload];
             saveCollectionToLS("todos", clonedTodosFromLS2);
+
+            // delete selectedTodosFromLS[todoId];
+            // saveCollectionToLS("selected-todos", selectedTodosFromLS);
             return {
                 ...state,
                 data: Object.values(clonedTodosFromLS2),
                 todoIdToDelete: "",
                 todoById: null,
-                selectedTodo: state.selectedTodo && todoId === state.selectedTodo.id ? null : state.selectedTodo,
+                selectedTodos: Object.values(selectedTodosFromLS),
             };
 
         case UPDATE_TODO:
@@ -104,12 +112,40 @@ export const todosReducer = (state = initialTodosState, action: TodosAction): To
                 todoToEdit: null,
             };
 
-        case SET_SELECTED_TODO:
-            const selectedTodo = getCollectionFromLS("todos")[action.payload];
+        case SET_TODO_TO_CONFIRM:
+            const todoToConfirm = action.payload;
             return {
                 ...state,
-                selectedTodo,
+                todoToConfirm,
             };
+
+        case SET_SELECTED_TODOS:
+            // const selectedTodos = getCollectionFromLS("todos")[action.payload];
+            // return {
+            //     ...state,
+            //     selectedTodos,
+            // };
+
+            const clonedSelectedTodosFromLS = { ...selectedTodosFromLS };
+            clonedSelectedTodosFromLS[action.payload] = action.payload;
+            saveCollectionToLS("selected-todos", clonedSelectedTodosFromLS);
+
+            return {
+                ...state,
+                todoToConfirm: "",
+                selectedTodos: clonedSelectedTodosFromLS,
+            };
+
+        case REMOVE_SELECTED_TODOS:
+            const clonedSelectedTodosFromLSToRemove = { ...selectedTodosFromLS };
+            delete clonedSelectedTodosFromLSToRemove[action.payload];
+            saveCollectionToLS("selected-todos", clonedSelectedTodosFromLSToRemove);
+            return {
+                ...state,
+                todoToConfirm: "",
+                selectedTodos: clonedSelectedTodosFromLSToRemove,
+            };
+
         default:
             return state;
     }

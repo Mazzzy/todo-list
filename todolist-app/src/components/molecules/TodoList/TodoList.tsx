@@ -6,6 +6,8 @@ import { Todo } from "../../../store/types";
 import { getFilteredTodos } from "../../../utils/utils";
 
 import TodoItem from "./TodoItem";
+
+import "./TodoList.css";
 interface TodoListProps {
     todosData: any;
 }
@@ -17,7 +19,7 @@ const TodoList: FC<TodoListProps> = ({ todosData }) => {
     const activeTab = useSelector((state: RootState) => state.tabs?.activeName);
 
     const filteredTodos = getFilteredTodos(todosData, filtersData, activeTab);
-    const todosPerPage = 10;
+    const todosPerPage = 5;
 
     // for displaying current todos
     const indexOfLastTodo = currentPage * todosPerPage;

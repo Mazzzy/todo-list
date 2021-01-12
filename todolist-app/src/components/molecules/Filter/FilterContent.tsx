@@ -37,21 +37,24 @@ const FilterContent: FC<FilterContentProps> = ({
     };
 
     return (
-        <div>
+        <div className="filter-container">
             <form>
                 <div className="field">
                     <TextField
                         name="todoName"
-                        placeholder="Todo Item Name to filter"
+                        placeholder="Filter todo name"
                         value={todoName}
                         onChange={nameInputChangeHandler}
                     />
                 </div>
                 <div className="field completed-check-container">
-                    <label className="checkbox">
-                        <Checkbox name="completedTodo" checked={completedTodo} onChange={onlyCompletedChangeHandler} />{" "}
-                        Only <Badge title="Completed" />
-                    </label>
+                    <Checkbox
+                        name="completedTodo"
+                        className="filter-checkbox"
+                        checked={completedTodo}
+                        onChange={onlyCompletedChangeHandler}
+                    />{" "}
+                    Only <Badge title="Completed" />
                 </div>
                 <Button title="Clear All" onClick={clickClearHandler} />
             </form>

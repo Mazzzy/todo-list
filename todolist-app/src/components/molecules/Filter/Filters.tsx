@@ -5,6 +5,8 @@ import { filterText, filterCompleted, filterClear } from "../../../store/actions
 import Card from "../../atoms/Card/Card";
 import FilterContent from "./FilterContent";
 
+import "./Filters.css";
+
 const Filters: FC = () => {
     const dispatch = useDispatch();
 

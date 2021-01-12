@@ -12,30 +12,10 @@
     padding: 0 1rem;
 }
 
-.action-btn {
+.action-btn-container {
+    display: flex;
+}
+
+.action-btn-container .action-btn {
     margin-right: 0.5em;
-}
-
-.page-numbers {
-    list-style: none;
-}
-
-.page-numbers li {
-    display: inline;
-    padding: 0.8em;
-    margin-right: 0.4em;
-    font-size: 0.98rem;
-    border: 1px solid #4797bf;
-    color: #4797bf;
-    cursor: pointer;
-}
-
-.page-numbers li:hover {
-    background-color: #4797bf;
-    color: #ffffff;
-}
-
-.page-numbers li.active-page {
-    background-color: #4797bf;
-    color: #ffffff;
 }

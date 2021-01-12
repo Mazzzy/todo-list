@@ -47,7 +47,7 @@ const TodoItem: FC<TodoItemProps> = ({ item }) => {
                         {item?.completed ? <Badge title="Completed" /> : " "}
                         <Label className="box-item-head">{title}</Label>
                     </p>
-                    <div>
+                    <div className="action-btn-container">
                         <Button
                             className={`action-btn ${addToBtnClassName}`}
                             title={addToListBtnTitle}

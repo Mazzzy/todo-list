@@ -1,0 +1,9 @@
+.filter-container .completed-check-container {
+    border-bottom: 2px solid #edf2f7;
+    padding: 1em 0;
+    text-align: left;
+}
+
+.filter-container .filter-checkbox {
+    margin: 1.2em 0;
+}

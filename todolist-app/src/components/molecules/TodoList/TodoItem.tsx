@@ -2,10 +2,12 @@ import React, { FC, MouseEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 import { setTodoToEdit, setTodoIdToDelete, setTodoToConfirm } from "../../../store/actions";
+import { hoursFormat } from "../../../utils/utils";
 
 import Card from "../../atoms/Card/Card";
 import Button from "../../atoms/Button/Button";
 import Label from "../../atoms/Label/Label";
+import Badge from "../../atoms/Badge/Badge";
 
 import "./TodoItem.css";
 
@@ -16,6 +18,7 @@ interface TodoItemProps {
 const TodoItem: FC<TodoItemProps> = ({ item }) => {
     const dispatch = useDispatch();
     const activeTab = useSelector((state: RootState) => state.tabs?.activeName);
+    const { id, title, userId, creationDate } = item;
 
     let addToListBtnTitle = "Add to my list";
     let addToBtnClassName = "";
@@ -41,44 +44,46 @@ const TodoItem: FC<TodoItemProps> = ({ item }) => {
             <div className="box">
                 <div className="box-item">
                     <p>
-                        <Label className="box-item-head">{item?.title}</Label>
+                        {item?.completed ? <Badge title="Completed" /> : " "}
+                        <Label className="box-item-head">{title}</Label>
                     </p>
                     <div>
                         <Button
                             className={`action-btn ${addToBtnClassName}`}
                             title={addToListBtnTitle}
                             onClick={(e: MouseEvent<HTMLAnchorElement>) => {
-                                setTodoToConfirmHandler(item?.id);
+                                setTodoToConfirmHandler(id);
                             }}
                         />
                         <Button
                             className="action-btn success"
                             title={"Edit"}
                             onClick={(e: MouseEvent<HTMLAnchorElement>) => {
-                                setTodoToEditHandler(item?.id);
+                                setTodoToEditHandler(id);
                             }}
                         />
                         <Button
                             className="action-btn danger"
                             title={"Delete"}
                             onClick={(e: MouseEvent<HTMLAnchorElement>) => {
-                                setTodoIdToDeleteHandler(item?.id);
+                                setTodoIdToDeleteHandler(id);
                             }}
                         />
                     </div>
                 </div>
                 <div className="box-item">
                     <p>
-                        Todo ID:
-                        <Label>{item?.id}</Label>
+                        Id:
+                        <Label>{id}</Label>
                     </p>
                     <p>
                         User ID:
-                        <Label>{item?.userId}</Label>
+                        <Label>{userId}</Label>
                     </p>
                     <p>
-                        Completed:
-                        <Label>{item?.completed}</Label>
+                        Creation Time:
+                        <Label>{creationDate ? hoursFormat(new Date(Number(creationDate))) : ""} </Label>
+                        {/* <Label>{new Date(item?.creationDate) || ""}</Label> */}
                     </p>
                 </div>
             </div>

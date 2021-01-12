@@ -105,6 +105,7 @@ export const todosReducer = (state = initialTodosState, action: TodosAction): To
         case UPDATE_TODO:
             const clonedTodosFromLS3 = { ...todosFromLS };
             clonedTodosFromLS3[action.payload.id].title = action.payload.title;
+            clonedTodosFromLS3[action.payload.id].completed = action.payload.completed;
             saveCollectionToLS("todos", clonedTodosFromLS3);
             return {
                 ...state,

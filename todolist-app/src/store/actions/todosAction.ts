@@ -113,12 +113,13 @@ export const deleteTodo = (id: string): TodosAction => {
     };
 };
 
-export const updateTodo = (id: number, title: string): TodosAction => {
+export const updateTodo = (id: number, title: string, completed: boolean): TodosAction => {
     return {
         type: UPDATE_TODO,
         payload: {
             id,
             title,
+            completed,
         },
     };
 };

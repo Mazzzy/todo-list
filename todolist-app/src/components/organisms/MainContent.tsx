@@ -23,7 +23,7 @@ const MainContent: FC = () => {
     useEffect(() => {
         dispatch(setLoading());
         dispatch(getTodos());
-        //dispatch(getTodos([{ id: 1, name: "One", creationDate: "June 2020", completed: false }]));
+        // dispatch(getTodos([{ id: 1, name: "One", creationDate: "June 2020", completed: false }]));
     }, [dispatch]);
 
     return (

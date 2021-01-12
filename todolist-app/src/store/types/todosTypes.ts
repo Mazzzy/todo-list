@@ -84,6 +84,7 @@ interface UpdateTodoAction {
     payload: {
         id: number;
         title: string;
+        completed: boolean;
     };
 }
 

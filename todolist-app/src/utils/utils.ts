@@ -13,6 +13,10 @@ export const saveCollectionToLS = (lsKeyName: string, todos: any) => {
     localStorage.setItem(lsKeyName, JSON.stringify(todos));
 };
 
+export const convertArrToObj = (arr: [], keyRef: string) => {
+    var objectCollection = arr.reduce((obj, item) => Object.assign(obj, { [item[keyRef]]: item }), {});
+    return objectCollection;
+};
 // helper methods
 export const hoursFormat = (date: Date): string => {
     let hours: any = date.getHours();

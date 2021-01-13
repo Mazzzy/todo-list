@@ -15,7 +15,7 @@ import {
     REMOVE_SELECTED_TODOS,
 } from "../types";
 
-import { getCollectionFromLS, saveCollectionToLS } from "../../utils/utils";
+import { getCollectionFromLS, saveCollectionToLS, convertArrToObj } from "../../utils/utils";
 
 const initialTodosState: TodosState = {
     data: null,
@@ -33,11 +33,16 @@ export const todosReducer = (state = initialTodosState, action: TodosAction): To
     const selectedTodosFromLS = getCollectionFromLS("selected-todos");
     switch (action.type) {
         case GET_TODOS:
-            console.log("TT ", todosFromLS);
+            let fetchedTodos: any = [];
+            if (!Object.keys(todosFromLS).length) {
+                fetchedTodos = action.payload;
+                saveCollectionToLS("todos", convertArrToObj(fetchedTodos, "id"));
+            } else {
+                fetchedTodos = Object.values(todosFromLS);
+            }
+            // const fetchedTodos = !Object.keys(todosFromLS).length ? action.payload : Object.values(todosFromLS)
             return {
-                // ...state,
-                // data: action.payload,
-                data: !Object.keys(todosFromLS).length ? action.payload : Object.values(todosFromLS),
+                data: fetchedTodos,
                 loading: false,
                 error: "",
                 todoIdToDelete: "",

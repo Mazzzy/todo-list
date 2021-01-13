@@ -19,7 +19,15 @@ const TodoList: FC<TodoListProps> = ({ todosData }) => {
     const activeTab = useSelector((state: RootState) => state.tabs?.activeName);
 
     const filteredTodos = getFilteredTodos(todosData, filtersData, activeTab);
+    const filteredTodosLength = filteredTodos.length;
     const todosPerPage = 5;
+    const totalPages = Math.ceil(filteredTodosLength / todosPerPage);
+    const markToResetPages = currentPage * todosPerPage;
+
+    // reset the current page number based on tab change (for respective todolist count)
+    if (filteredTodosLength < markToResetPages) {
+        //setCurrentPage(1);
+    }
 
     // for displaying current todos
     const indexOfLastTodo = currentPage * todosPerPage;
@@ -28,7 +36,7 @@ const TodoList: FC<TodoListProps> = ({ todosData }) => {
 
     // for displaying page numbers
     const pageNumbers = [];
-    for (let i = 1; i <= Math.ceil(filteredTodos.length / todosPerPage); i++) {
+    for (let i = 1; i <= totalPages; i++) {
         pageNumbers.push(i);
     }
 

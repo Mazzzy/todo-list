@@ -26,7 +26,7 @@ const TodoList: FC<TodoListProps> = ({ todosData }) => {
 
     // reset the current page number based on tab change (for respective todolist count)
     if (filteredTodosLength < markToResetPages) {
-        //setCurrentPage(1);
+        // setCurrentPage(1);
     }
 
     // for displaying current todos

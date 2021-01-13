@@ -14,7 +14,7 @@ export const saveCollectionToLS = (lsKeyName: string, todos: any) => {
 };
 
 export const convertArrToObj = (arr: [], keyRef: string) => {
-    var objectCollection = arr.reduce((obj, item) => Object.assign(obj, { [item[keyRef]]: item }), {});
+    const objectCollection = arr.reduce((obj, item) => ({ ...obj, [item[keyRef]]: item }), {});
     return objectCollection;
 };
 // helper methods

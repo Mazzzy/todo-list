@@ -15,7 +15,7 @@ const ConfirmTodoMyListModal: FC<ConfirmTodoMyListModalProps> = ({ todoId }) => 
     const dispatch = useDispatch();
     const todo = useSelector((state: RootState) => state.todos.todoById);
     const activeTab = useSelector((state: RootState) => state.tabs?.activeName);
-
+    const modalOppositeActiveTabName = activeTab === "all" ? "my-list" : "all-list";
     const confirmTodoHandler = (e: MouseEvent<HTMLAnchorElement>): void => {
         if (activeTab === "all") {
             dispatch(setTodoToSelected(todoId));
@@ -34,7 +34,7 @@ const ConfirmTodoMyListModal: FC<ConfirmTodoMyListModalProps> = ({ todoId }) => 
     return (
         <div>
             <Modal
-                title={`Are you sure you want to add this todo to "${activeTab}" list?`}
+                title={`Are you sure you want to add this todo to "${modalOppositeActiveTabName}" ?`}
                 okClick={confirmTodoHandler}
                 cancelClick={hideModalHandler}
                 okBtnCaption={"Move"}

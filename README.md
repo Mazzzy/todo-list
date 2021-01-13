@@ -108,3 +108,100 @@ npm run deploy
 It takes build code and deploy over specificed homepage url under package.json file. The app get deployed over specified url
 
 # Screenshots
+
+## Desktop views
+
+### Landing page - All todos
+
+<p align="center">
+  <img src="screenshots/todolist-landing-page-all-todos.png" alt="todolist-landing-page-all-todos"/>
+  <br/>
+</p>
+
+### Landing page - My todos
+
+<p align="center">
+  <img src="screenshots/todolist-landing-page-my-todos.png" alt="todolist-landing-page-my-todos"/>
+  <br/>
+</p>
+
+### Create todo item
+
+<p align="center">
+  <img src="screenshots/todolist-create-todo-item.png" alt="todolist-create-todo-item"/>
+  <br/>
+</p>
+
+### Confirm modal - To move todo item to respective list
+
+<p align="center">
+  <img src="screenshots/todolist-modal-confirm-to-move-in-lists.png" alt="todolist-modal-confirm-to-move-in-lists"/>
+  <br/>
+</p>
+
+### Edit modal - To update todo item also mark as complete option
+
+<p align="center">
+  <img src="screenshots/todolist-modal-edit-todo-item.png" alt="todolist-modal-edit-todo-item"/>
+  <br/>
+</p>
+
+### Delete modal - To delete todo item
+
+<p align="center">
+  <img src="screenshots/todolist-modal-delete-todo-item.png" alt="todolist-modal-delete-todo-item"/>
+  <br/>
+</p>
+
+### Filters - by name & completed flag
+
+<p align="center">
+  <img src="screenshots/todolist-filterby.png" alt="todolist-filterby"/>
+  <br/>
+</p>
+
+## Mobile views
+
+### Mobile - Portrait view - 1
+
+<p align="center">
+  <img src="screenshots/todolist-mobile-portrait-mode-1.png" alt="todolist-mobile-portrait-mode-1"/>
+  <br/>
+</p>
+
+### Mobile - Portrait view - 2
+
+<p align="center">
+  <img src="screenshots/todolist-mobile-portrait-mode-2.png" alt="todolist-mobile-portrait-mode-2"/>
+  <br/>
+</p>
+
+### Mobile - Landscape view - 1
+
+<p align="center">
+  <img src="screenshots/todolist-mobile-landscape-mode-1.png" alt="todolist-mobile-landscape-mode-1"/>
+  <br/>
+</p>
+
+### Mobile - Landscape view - 2
+
+<p align="center">
+  <img src="screenshots/todolist-mobile-landscape-mode-2.png" alt="todolist-mobile-landscape-mode-2"/>
+  <br/>
+</p>
+
+## Tablet views
+
+### Tablet - Portrait view
+
+<p align="center">
+  <img src="screenshots/todolist-tablet-portrait-mode.png" alt="todolist-tablet-portrait-mode"/>
+  <br/>
+</p>
+
+### Tablet - Landscape view
+
+<p align="center">
+  <img src="screenshots/todolist-tablet-landscape-mode.png" alt="todolist-tablet-landscape-mode"/>
+  <br/>
+</p>
